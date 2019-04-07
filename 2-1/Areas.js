@@ -27,3 +27,13 @@ function calculateTrapezoidArea(bottom, top, height) {
 
     return (bottom + top) * height / 2;
 }
+
+function calculateCylinderArea(radius, height) {
+    if (arguments.length != 2) {
+        throw "좋은 말로 할때 반지름, 높이를 순서대로 넣어라.";
+    }
+
+    return calculateCircleArea(radius) * height;
+    //const PI = 3.14;
+    //return r**2*PI*height;
+}
