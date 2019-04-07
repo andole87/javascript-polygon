@@ -19,3 +19,11 @@ function calculateSquareArea() {
             return arguments[0] * arguments[1]; 
     }
 }
+
+function calculateTrapezoidArea(bottom, top, height) {
+    if (arguments.length != 3) {
+        throw "밑변, 윗변, 높이를 순서대로 넣으십셔";
+    }
+
+    return (bottom + top) * height / 2;
+}
