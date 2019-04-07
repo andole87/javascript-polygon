@@ -5,3 +5,17 @@ function calculateCircleArea(r){
     const PI = 3.14;
     return r**2*PI;
 }
+
+function calculateSquareArea() {
+    const argsNumber = [1,2];
+    if (!argsNumber.includes(arguments.length)){
+        throw "인자의 개수가 안맞아여";
+    }
+
+    switch (arguments.length){
+        case 1:
+            return arguments[0]**2;
+        case 2:
+            return arguments[0] * arguments[1]; 
+    }
+}
