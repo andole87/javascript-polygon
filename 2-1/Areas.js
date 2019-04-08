@@ -1,57 +1,38 @@
-function calculateCircleArea(r){
-    if (arguments.length != 1) {
-        throw "인자 개수가 부족합니다.";
+function isNumber(number) {
+    return Number.isFinite(number);
+}
+function isValid(element, count) {
+    for (let i = 0; i < element.length; i++) {
+        if (!isNumber(element[i])) throw Error("숫자 입력하슈");
+        if (element.length !== count) throw Error(`${count}개 필요함`);
+        return true;
     }
-    if (typeof arguments[i] != Number){
-        throw "숫자를 넣으세요.";
-    }
-    const PI = 3.14;
-    return r**2*PI;
 }
 
-function calculateSquareArea() {
-    const argsNumber = [1,2];
-    if (!argsNumber.includes(arguments.length)){
-        throw "인자의 개수가 안맞아여";
-    }
-    for (let i = 0; i < arguments.length; i++){
-        if (typeof arguments[i] != Number){
-            throw "숫자 넣어여";
-        }
-    }
 
-    switch (arguments.length){
-        case 1:
-            return arguments[0]**2;
-        case 2:
-            return arguments[0] * arguments[1]; 
-    }
+function calculateCircleArea(radius) {
+    isValid(arguments, 1);
+    const PI = Math.PI;
+    return radius ** 2 * PI;
+}
+
+function calculateSquareArea(width, height = width) {
+    isValid(arguments, 2);
+
+    return width * height;
 }
 
 function calculateTrapezoidArea(bottom, top, height) {
-    if (arguments.length != 3) {
-        throw "밑변, 윗변, 높이를 순서대로 넣으십셔";
-    }
-    for (let i = 0; i < 3; i++){
-        if (typeof arguments[i] != Number){
-            throw "숫자 넣으셈";
-        }
-    }
-
+    isValid(arguments, 3);
     return (bottom + top) * height / 2;
 }
 
 function calculateCylinderArea(radius, height) {
-    if (arguments.length != 2) {
-        throw "좋은 말로 할때 반지름, 높이를 순서대로 넣어라.";
-    }
-    for (let i = 0; i < 2; i++){
-        if (typeof arguments[i] != Number){
-            throw "숫자 느라고 XX";
-        }
-    }
-
-    return calculateCircleArea(radius) * height;
-    //const PI = 3.14;
-    //return r**2*PI*height;
+    isValid(arguments, 2);
+    const PI = Math.PI;
+    return (calculateCircleArea(radius) * 2) + 2 * radius * PI * height;
 }
+module.exports.circle = calculateCircleArea;
+module.exports.square = calculateSquareArea;
+module.exports.trapezoid = calculateTrapezoidArea;
+module.exports.cylinder = calculateCylinderArea;
